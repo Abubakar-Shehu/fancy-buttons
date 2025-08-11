@@ -7,18 +7,33 @@ import { TextRepeaterButton } from './components/TextRepeaterButton'
 
 export const App = () => {
   const [light, setLight] = useState(0);
+
+  const [angryApp, setAngryApp] = useState(0)
+  const increaseAnger = (amount) => {
+    if (angryApp < 1) {
+      setAngryApp(angryApp + amount);
+    } else {
+      setAngryApp(0);
+    }
+  }
+
+  const switchLight = () => {
+    light === 0 && setLight(1) || light === 1 && setLight(0)
+    // setLight(light === "1" ? "0" : "1");
+    increaseAnger(0.1)
+  }
+                         
   const dark = (light === 0) ? 'dark' : '';
-  // (light === 0) && 'dark' || (light === 1) && ''
+            // (light === 0) && 'dark' || (light === 1) && ''
 
   return (
     <div className={`App ${dark}`}>
-      <h1>Fancy Buttons</h1>
-
+      <h1>{angryApp < 1 ? "Fancy Buttons!" : "YOU'RE CLICKING TOO MANY BUTTONS!"}</h1>
       <section>
-        <AngryButton />
-        <CounterButton />
-        <LightSwitchButton light={light} setLight={setLight}/>
-        <TextRepeaterButton />
+        <AngryButton increaseAnger={increaseAnger}/>
+        <CounterButton increaseAnger={increaseAnger}/>
+        <LightSwitchButton light={light} switchLight={switchLight} />
+        <TextRepeaterButton increaseAnger={increaseAnger}/>
       </section>
     </div>
   )

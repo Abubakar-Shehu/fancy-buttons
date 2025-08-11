@@ -1,6 +1,8 @@
 import { useState } from "react"
 
 export const TextRepeaterButton = (props) => {
+  const { increaseAnger } = props;
+
   const [repeat, setRepeat] = useState(1);
   const repeatedWord = [];
 
@@ -8,7 +10,10 @@ export const TextRepeaterButton = (props) => {
     repeatedWord.push(<span key={i}>I like this text</span>);
   }
   
-  const handleClick = () => setRepeat(repeat + 1)
+  const handleClick = () => {
+    setRepeat(repeat + 1)
+    increaseAnger(0.1)
+  }
 
   return (
     <button onClick={handleClick} className="TextRepeaterButton">

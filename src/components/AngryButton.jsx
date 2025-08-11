@@ -1,6 +1,8 @@
 import { useState } from "react"
 
 export const AngryButton = (props) => {
+  const { increaseAnger } = props;
+
   const [anger, setAnger] = useState(0);
 
   const handleClick = (amount) => {
@@ -9,6 +11,7 @@ export const AngryButton = (props) => {
     } else {
       setAnger(0)
     }
+    increaseAnger(amount);
   };
 
   return (
