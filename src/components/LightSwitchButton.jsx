@@ -1,8 +1,16 @@
-export const TextRepeaterButton = () => {
+import { useState } from "react"
+
+export const LightSwitchButton = (props) => {
+  const [light, setLight] = useState(0);
+
+  const handleClick = () => light === 0 && setLight(1) || light === 1 && setLight(0)
+                            // setLight(light === "1" ? "0" : "1");
+  
+
   return (
-    <button className="LightSwitchButton">
-    {/* When the state is on */}<span><i>💡</i> I&#39;m on!</span>
-    {/* When the state is off */}<span className="off"><i>💡</i> I&#39;m off!</span>
+    <button onClick={handleClick} className="LightSwitchButton">
+    {light === 1 && <span><i>💡</i> I&#39;m on!</span>}
+    {light === 0 && <span className="off"><i>💡</i> I&#39;m off!</span>}
     </button>
   )
 }

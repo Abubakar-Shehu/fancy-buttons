@@ -1,8 +1,20 @@
-export const AngryButton = () => {
+import { useState } from "react"
+
+export const AngryButton = (props) => {
+  const [anger, setAnger] = useState(0);
+
+  const handleClick = (amount) => {
+    if (anger < 1) {
+      setAnger(anger + amount)
+    } else {
+      setAnger(0)
+    }
+  };
+
   return (
-    <button className="AngryButton">
-    {/* When the threshold is not reached */}<span>Don&#39;t click me too much! </span>
-    {/* When the threshold is reached */}<span>Rawr!</span>
+    <button onClick={() => handleClick(0.1)} style={{ backgroundColor: `rgba(255,0,0,${anger})` }} className="AngryButton">
+    {anger < 1 && <span>Don&#39;t click me too much! </span>}
+    {anger > 1 && <span>Rawr!</span>}
     </button>
   )
 }
